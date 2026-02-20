@@ -1,5 +1,6 @@
 package com.dilshan.auction_system.service;
 
+import com.dilshan.auction_system.dto.response.BidResponse;
 import com.dilshan.auction_system.entity.Bid;
 import com.dilshan.auction_system.entity.Item;
 import com.dilshan.auction_system.enums.Status;
@@ -42,14 +43,25 @@ public class ItemService {
     }
 
     // Get the winning bid for a closed auction
-    public Bid getWinner(Long itemId) {
+    public BidResponse getWinner(Long itemId) {
         Item item = getItemById(itemId);
         if (item.getStatus() == Status.OPEN) {
             throw new RuntimeException("Auction is still open");
         }
-        return item.getBids().stream()
+
+        Bid winner = item.getBids().stream()
                 .max((b1, b2) -> b1.getBidAmount().compareTo(b2.getBidAmount()))
                 .orElse(null);
+
+        if (winner == null) return null;
+
+        // Map entity to DTO to avoid recursion
+        return new BidResponse(
+                winner.getId(),
+                winner.getBidderName(),
+                winner.getBidAmount(),
+                winner.getBidTime()
+        );
     }
 
     // Close all expired auctions in a list

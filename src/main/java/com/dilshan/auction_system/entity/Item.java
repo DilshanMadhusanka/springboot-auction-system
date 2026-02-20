@@ -25,11 +25,13 @@ public class Item {
     private BigDecimal currentHighestBid;
     private LocalDateTime auctionEndTime;
 
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.OPEN; // ← Add this back
+
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Bid> bids = new ArrayList<>();
 
-    // Dynamic status calculation
     public boolean isExpired() {
-        return this.auctionEndTime.isBefore(LocalDateTime.now());
+        return auctionEndTime.isBefore(LocalDateTime.now());
     }
 }

@@ -24,12 +24,12 @@ public class BidService {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new InvalidBidException("Item not found"));
 
-        // FIRST: Check if auction expired
-        if (item.isExpired()) {
+        // Check auction status
+        if (item.getStatus() == Status.CLOSED || item.isExpired()) {
             throw new InvalidBidException("Auction is closed");
         }
 
-        // Then check bid amount
+        // Check bid amount
         BigDecimal currentHighest = item.getCurrentHighestBid() != null
                 ? item.getCurrentHighestBid()
                 : item.getStartingPrice();

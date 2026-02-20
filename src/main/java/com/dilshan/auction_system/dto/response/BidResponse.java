@@ -1,12 +1,14 @@
 package com.dilshan.auction_system.dto.response;
 
 import com.dilshan.auction_system.entity.Bid;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
 public class BidResponse {
     private Long id;
     private String bidderName;

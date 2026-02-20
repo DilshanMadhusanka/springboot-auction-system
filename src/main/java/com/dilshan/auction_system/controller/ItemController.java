@@ -1,6 +1,7 @@
 package com.dilshan.auction_system.controller;
 
 import com.dilshan.auction_system.dto.request.ItemRequest;
+import com.dilshan.auction_system.dto.response.BidResponse;
 import com.dilshan.auction_system.dto.response.ItemResponse;
 import com.dilshan.auction_system.entity.Bid;
 import com.dilshan.auction_system.entity.Item;
@@ -42,7 +43,7 @@ public class ItemController {
     }
 
     @GetMapping("/{id}/winner")
-    public Bid getWinner(@PathVariable Long id){
+    public BidResponse getWinner(@PathVariable Long id){
         return itemService.getWinner(id);
     }
 }
