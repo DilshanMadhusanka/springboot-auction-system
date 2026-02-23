@@ -45,7 +45,7 @@ A real-time auction system backend built with Spring Boot and MySQL. Users can c
 
 
 
-## 6. Tech Stack
+### 6. Tech Stack
 
 - **Java 17+**
 - **Spring Boot**
