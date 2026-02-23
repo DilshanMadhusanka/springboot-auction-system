@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByStatus(Status status);
-  ///List<Item> findByStatusAndAuctionEndTimeBefore(Status status, LocalDateTime time);
   List<Item> findByStatusAndAuctionEndTimeBefore(Status status, LocalDateTime dateTime);
 
 }

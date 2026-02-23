@@ -26,7 +26,7 @@ public class Item {
     private LocalDateTime auctionEndTime;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.OPEN; // ← Add this back
+    private Status status = Status.OPEN;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<Bid> bids = new ArrayList<>();
